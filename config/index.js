@@ -45,6 +45,20 @@ class Database {
   removeDepartment(departmentId) {
     return this.connection.query("DELETE FROM department WHERE id = ?", departmentId);
   }
+
+  createRole(role) {
+    return this.connection.query("INSERT INTO role SET ?", role);
+  }
+
+  allRoles() {
+    return this.connection.query(
+      "SELECT role.id, role.title, department.name AS department, role.salary FROM role LEFT JOIN department on role.department_id = department.id;"
+    );
+  }
+
+  removeRole(roleId) {
+    return this.connection.query("DELETE FROM role WHERE id = ?", roleId);
+  }
 }
 
 module.exports = new Database(connection);
