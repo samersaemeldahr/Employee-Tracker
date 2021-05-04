@@ -62,20 +62,20 @@ async function mainQuestions() {
     switch (choice) {
         case "ALL_EMPLOYEES":
             return allEmployees();
+        case "ALL_ROLES":
+            return allRoles();
+        case "ALL_DEPARTMENTS":
+            return allDepartments();
         case "ALL_EMPLOYEES_BY_DEPARTMENT":
             return allEmployeesByDepartment();
         case "ADD_EMPLOYEE":
             return addEmployee();
         case "REMOVE_EMPLOYEE":
             return removeEmployee();
-        case "ALL_DEPARTMENTS":
-            return allDepartments();
         case "ADD_DEPARTMENT":
             return addDepartment();
         case "REMOVE_DEPARTMENT":
             return removeDepartment();
-        case "ALL_ROLES":
-            return viewRoles();
         case "ADD_ROLE":
             return addRole();
         case "REMOVE_ROLE":
@@ -94,9 +94,27 @@ function quit() {
 // Show all employees function
 async function allEmployees() {
     const employees = await config.allEmployees();
-    
+
     // Get employees database
     console.table(employees);
+
+    mainQuestions();
+}
+
+// Show all roles function
+async function allRoles() {
+    const roles = await config.allRoles();
+
+    console.table(roles);
+
+    mainQuestions();
+}
+
+// Show all departments function
+async function allDepartments() {
+    const departments = await config.allDepartments();
+
+    console.table(departments);
 
     mainQuestions();
 }
