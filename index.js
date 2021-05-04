@@ -61,15 +61,15 @@ async function mainQuestions() {
     // Get answer
     switch (choice) {
         case "ALL_EMPLOYEES":
-            return viewEmployees();
+            return allEmployees();
         case "ALL_EMPLOYEES_BY_DEPARTMENT":
-            return viewEmployeesByDepartment();
+            return allEmployeesByDepartment();
         case "ADD_EMPLOYEE":
             return addEmployee();
         case "REMOVE_EMPLOYEE":
             return removeEmployee();
         case "ALL_DEPARTMENTS":
-            return viewDepartments();
+            return allDepartments();
         case "ADD_DEPARTMENT":
             return addDepartment();
         case "REMOVE_DEPARTMENT":
@@ -89,6 +89,16 @@ async function mainQuestions() {
 function quit() {
     console.log("See you later!");
     process.exit();
+}
+
+// Show all employees function
+async function allEmployees() {
+    const employees = await config.allEmployees();
+    
+    // Get employees database
+    console.table(employees);
+
+    mainQuestions();
 }
 
 mainQuestions();
