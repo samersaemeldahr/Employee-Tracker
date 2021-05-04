@@ -4,7 +4,7 @@ require("console.table");
 
 // Ask main questions
 async function mainQuestions() {
-    const choice = await prompt([
+    const { choice } = await prompt([
         {
             type: "list",
             name: "choice",
@@ -57,6 +57,38 @@ async function mainQuestions() {
             ]
         }
     ]);
+
+    // Get answer
+    switch (choice) {
+        case "ALL_EMPLOYEES":
+            return viewEmployees();
+        case "ALL_EMPLOYEES_BY_DEPARTMENT":
+            return viewEmployeesByDepartment();
+        case "ADD_EMPLOYEE":
+            return addEmployee();
+        case "REMOVE_EMPLOYEE":
+            return removeEmployee();
+        case "ALL_DEPARTMENTS":
+            return viewDepartments();
+        case "ADD_DEPARTMENT":
+            return addDepartment();
+        case "REMOVE_DEPARTMENT":
+            return removeDepartment();
+        case "ALL_ROLES":
+            return viewRoles();
+        case "ADD_ROLE":
+            return addRole();
+        case "REMOVE_ROLE":
+            return removeRole();
+        default:
+            return quit();
+    }
+}
+
+// Create quit function
+function quit() {
+    console.log("See you later!");
+    process.exit();
 }
 
 mainQuestions();
