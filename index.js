@@ -297,4 +297,37 @@ async function removeDepartment() {
     mainQuestions();
 }
 
+// Show all employees by department function
+async function allEmployeesByDepartment() {
+    const departments = await config.allDepartments();
+
+    const departmentChoices = departments.map(({ id, name }) => ({
+        name: name,
+        value: id
+    }));
+
+    const { departmentId } = await prompt([
+        {
+            type: "list",
+            name: "departmentId",
+            message: "Which department would you like to see employees for?",
+            choices: departmentChoices
+        }
+    ]);
+
+    const employees = await config.allEmployeesByDepartment(departmentId);
+
+    console.table(employees);
+
+    mainQuestions();
+}
+
+// function init() {
+// //    const logoText = logo({ name: "Employee Manager" }).render();
+
+//  //   console.log(logoText);
+
+//     mainQuestions();
+// }
+
 mainQuestions();
