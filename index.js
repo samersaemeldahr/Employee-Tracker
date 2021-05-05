@@ -1,6 +1,8 @@
-const config = require("./db");
+const config = require("./config");
 const { prompt } = require("inquirer");
 require("console.table");
+
+const art = require("asciiart-logo")
 
 // Ask main questions
 async function mainQuestions() {
