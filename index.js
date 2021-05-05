@@ -59,6 +59,10 @@ async function mainQuestions() {
                     value: "UPDATE_EMPLOYEE_MANAGER"
                 },
                 {
+                    name: "View All Employees By Manager",
+                    value: "VIEW_EMPLOYEES_BY_MANAGER"
+                },
+                {
                     name: "Quit",
                     value: "QUIT"
                 }
@@ -92,6 +96,8 @@ async function mainQuestions() {
             return updateEmployeeRole();
         case "UPDATE_EMPLOYEE_MANAGER":
             return updateEmployeeManager();
+        case "VIEW_EMPLOYEES_BY_MANAGER":
+            return allEmployeesByManager();
         case "Quit":
             return quit();
     }
