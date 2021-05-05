@@ -7,7 +7,7 @@
   ## Description 
   A command-line application that allows the user to add, view and update employee database.
 
-  ![app Screenshot](./assets/screenshot.png)
+  ![app Screenshot](./Assets/screenshot.png)
 
   ## Table of Contents
   
