@@ -222,4 +222,79 @@ async function addRole() {
     mainQuestions();
 }
 
+// Remove employee from table function
+async function removeEmployee() {
+    const employees = await config.allEmployees();
+
+    const employeeChoices = employees.map(({ id, first_name, last_name }) => ({
+        name: `${first_name} ${last_name}`,
+        value: id
+    }));
+
+    const { employeeId } = await prompt([
+        {
+            type: "list",
+            name: "employeeId",
+            message: "Which employee do you want to remove?",
+            choices: employeeChoices
+        }
+    ]);
+
+    await config.removeEmployee(employeeId);
+
+    console.log("Employee is removed");
+
+    mainQuestions();
+}
+
+// Remove role from table function
+async function removeRole() {
+    const roles = await config.allRoles();
+
+    const roleChoices = roles.map(({ id, title }) => ({
+        name: title,
+        value: id
+    }));
+
+    const { roleId } = await prompt([
+        {
+            type: "list",
+            name: "roleId",
+            message:
+                "Which role do you want to remove?",
+            choices: roleChoices
+        }
+    ]);
+
+    await config.removeRole(roleId);
+
+    console.log("Role is removed");
+
+    mainQuestions();
+}
+
+// Remove department from table function
+async function removeDepartment() {
+    const departments = await config.allDepartments();
+
+    const departmentChoices = departments.map(({ id, name }) => ({
+        name: name,
+        value: id
+    }));
+
+    const { departmentId } = await prompt({
+        type: "list",
+        name: "departmentId",
+        message:
+            "Which department would you like to remove?",
+        choices: departmentChoices
+    });
+
+    await config.removeDepartment(departmentId);
+
+    console.log(`Department is removed`);
+
+    mainQuestions();
+}
+
 mainQuestions();
