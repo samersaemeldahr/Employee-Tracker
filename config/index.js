@@ -59,6 +59,30 @@ class Database {
   removeRole(roleId) {
     return this.connection.query("DELETE FROM role WHERE id = ?", roleId);
   }
+
+
+  allPossibleManagers(employeeId) {
+    return this.connection.query(
+      "SELECT id, first_name, last_name FROM employee WHERE id != ?",
+      employeeId
+    );
+  }
+
+
+  updateEmployeeRole(employeeId, roleId) {
+    return this.connection.query(
+      "UPDATE employee SET role_id = ? WHERE id = ?",
+      [roleId, employeeId]
+    );
+  }
+
+
+  updateEmployeeManager(employeeId, managerId) {
+    return this.connection.query(
+      "UPDATE employee SET manager_id = ? WHERE id = ?",
+      [managerId, employeeId]
+    );
+  }
 }
 
 module.exports = new Database(connection);
