@@ -51,6 +51,14 @@ async function mainQuestions() {
                     value: "REMOVE_DEPARTMENT"
                 },
                 {
+                    name: "Update Employee Role",
+                    value: "UPDATE_EMPLOYEE_ROLE"
+                },
+                {
+                    name: "Update Employee Manager",
+                    value: "UPDATE_EMPLOYEE_MANAGER"
+                },
+                {
                     name: "Quit",
                     value: "QUIT"
                 }
@@ -80,6 +88,10 @@ async function mainQuestions() {
             return removeDepartment();
         case "REMOVE_ROLE":
             return removeRole();
+        case "UPDATE_EMPLOYEE_ROLE":
+            return updateEmployeeRole();
+        case "UPDATE_EMPLOYEE_MANAGER":
+            return updateEmployeeManager();
         case "Quit":
             return quit();
     }
@@ -321,13 +333,5 @@ async function allEmployeesByDepartment() {
 
     mainQuestions();
 }
-
-// function init() {
-// //    const logoText = logo({ name: "Employee Manager" }).render();
-
-//  //   console.log(logoText);
-
-//     mainQuestions();
-// }
 
 mainQuestions();
