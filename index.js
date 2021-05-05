@@ -458,7 +458,7 @@ async function allEmployeesByManager() {
         console.table(employees);
     }
 
-    loadMainPrompts();
+    mainQuestions();
 }
 
 // Create logo
