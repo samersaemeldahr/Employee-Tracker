@@ -100,14 +100,21 @@ async function mainQuestions() {
             return updateEmployeeManager();
         case "VIEW_EMPLOYEES_BY_MANAGER":
             return allEmployeesByManager();
-        case "Quit":
+        default:
             return quit();
     }
 }
 
 // Create quit function
 function quit() {
-    console.log("See you later!");
+
+    console.log(art({
+        name: "See you later!",
+        font: "DOS Rebel",
+        borderColor: 'bold-red',
+        logoColor: 'bold-green'}).render()
+        );
+
     process.exit();
 }
 
@@ -454,4 +461,17 @@ async function allEmployeesByManager() {
     loadMainPrompts();
 }
 
-mainQuestions();
+// Create logo
+function addArt() {
+
+    console.log(art({
+        name: "Employee Tracker",
+        font: "DOS Rebel",
+        borderColor: 'bold-red',
+        logoColor: 'bold-green'}).render()
+        );
+  
+    mainQuestions();
+}
+
+addArt();
