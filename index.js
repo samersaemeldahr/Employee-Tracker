@@ -434,7 +434,7 @@ async function updateEmployeeManager() {
 
 // Show all employees by manager function
 async function allEmployeesByManager() {
-    const managers = await db.allEmployees();
+    const managers = await config.allEmployees();
 
     const managerChoices = managers.map(({ id, first_name, last_name }) => ({
         name: `${first_name} ${last_name}`,
@@ -450,7 +450,7 @@ async function allEmployeesByManager() {
         }
     ]);
 
-    const employees = await db.allEmployeesByManager(managerId);
+    const employees = await config.allEmployeesByManager(managerId);
 
     if (employees.length === 0) {
         console.log("The selected employee has no direct reports");
