@@ -1,5 +1,5 @@
 const config = require("./db");
-const {prompt} = require("inquirer");
+const { prompt } = require("inquirer");
 require("console.table");
 
 // Ask main questions
@@ -421,6 +421,35 @@ async function updateEmployeeManager() {
     console.log("Updated employee's manager");
 
     mainQuestions();
+}
+
+// Show all employees by manager function
+async function allEmployeesByManager() {
+    const managers = await db.allEmployees();
+
+    const managerChoices = managers.map(({ id, first_name, last_name }) => ({
+        name: `${first_name} ${last_name}`,
+        value: id
+    }));
+
+    const { managerId } = await prompt([
+        {
+            type: "list",
+            name: "managerId",
+            message: "Which employee do you want to see direct reports for?",
+            choices: managerChoices
+        }
+    ]);
+
+    const employees = await db.allEmployeesByManager(managerId);
+
+    if (employees.length === 0) {
+        console.log("The selected employee has no direct reports");
+    } else {
+        console.table(employees);
+    }
+
+    loadMainPrompts();
 }
 
 mainQuestions();
